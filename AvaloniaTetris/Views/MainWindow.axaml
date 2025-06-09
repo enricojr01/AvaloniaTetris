@@ -1,0 +1,87 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaTetris.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:AvaloniaTetris.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaTetris.Views.MainWindow"
+        Icon="/Assets/Icon.ico"
+        Title="AvaloniaTetris"
+		Width="800"
+		Height="450"
+		Foreground="White"
+		FontFamily="Segoe UI Light"
+		FontSize="28"
+		Name="mainGameWindow">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>	
+			<RowDefinition Height="*"/>	
+		</Grid.RowDefinitions>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.Background>
+			<ImageBrush Source="/Assets/Background.png"/>
+		</Grid.Background>
+		
+		<!-- Figure out how to do the Window Keydown event handler
+		and the Viewbox Loaded event handler-->
+		<Viewbox Grid.Row="1"
+				 Grid.Column="1"
+				 Margin="0, 0, 0, 0">
+			<Canvas x:Name="GameCanvas"
+					Background="#101010"
+					Width="250"
+					Height="510"
+					ClipToBounds="True"
+					Loaded="GameCanvas_Loaded"/>
+		</Viewbox>
+		
+		<TextBlock x:Name="ScoreText"
+				   Grid.Row="0"
+				   Grid.Column="1"
+				   Text="Score: "
+				   Margin="0, 10"
+				   TextAlignment="Center"/>
+
+		<StackPanel Grid.Row="1"
+					Grid.Column="0"
+					VerticalAlignment="Center">
+			<TextBlock Text="Hold"
+					   TextAlignment="Center"/>
+			<Image x:Name="HoldImage"
+				   Margin="20"
+				   Width="125"/>
+		</StackPanel>
+
+		<Grid x:Name="GameOverMenu"
+		      Background="#CC000000"
+			  Grid.RowSpan="2"
+			  Grid.ColumnSpan="3"
+			  IsVisible="False">
+		  <StackPanel HorizontalAlignment="Center"
+					  VerticalAlignment="Center">
+			  <TextBlock Text="Game Over"
+						 FontSize="48"
+						 TextAlignment="Center"/>
+			  <TextBlock x:Name="FinalScoreText"
+						 Text="Score: "
+						 FontSize="36"
+						 TextAlignment="Center"/>
+			  <Button Name="playAgainButton"
+				      Content="Play Again"
+					  Background="LightGreen"
+					  Foreground="DarkBlue"
+					  Margin="0, 20, 0, 0"
+					  Padding="5"
+					  HorizontalAlignment="Center"/>
+		  </StackPanel>
+		</Grid>
+	</Grid>
+</Window>
